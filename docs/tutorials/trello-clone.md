@@ -35,7 +35,7 @@ if __name__ == "__main__":
  
         page.title = "Flet Trello clone"
         page.padding = 0
-        page.bgcolor = colors.BLUE_GREY_200
+        page.bgcolor = ft.Colors.BLUE_GREY_200
         app = TrelloApp(page)
         page.add(app)
         page.update()
@@ -53,9 +53,12 @@ So the class for the app itself could look something like this...
 ```python
 
 import flet as ft
- 
-class TrelloApp:
+
+# Later, TrelloApp will subclass AppLayout.
+# For now, we'll subclass Row so that `ft.app` can render it.
+class TrelloApp(ft.Row):
     def __init__(self, page: ft.Page):
+        super().__init__()
         self.page = page
         self.appbar_items = [
             ft.PopupMenuItem(text="Login"),
